@@ -58,14 +58,14 @@ class ChildController(private val childrenGraph: ChildrenGraphHandler) {
     @ExceptionHandler(ChildNotFoundException::class)
     fun childNotFound(e: ChildNotFoundException): ResponseEntity<egor.timoshenko.dto.Error> {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(
-            egor.timoshenko.dto.Error("404", e.message!!)
+            egor.timoshenko.dto.Error("storage", e.message!!)
         )
     }
 
     @ExceptionHandler(ChildSelfReflectionException::class)
     fun selReflection(e: ChildSelfReflectionException): ResponseEntity<egor.timoshenko.dto.Error> {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(
-            egor.timoshenko.dto.Error("409", e.message!!)
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+            egor.timoshenko.dto.Error("storage", e.message!!)
         )
     }
 

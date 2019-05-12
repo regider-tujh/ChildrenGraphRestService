@@ -118,7 +118,7 @@ internal class ChildrenGraphHandlerTest {
             poorChild.id,
             pureChild.id
         )
-        assertEquals(HttpStatus.NOT_FOUND, ans.statusCode)
+        assertEquals(HttpStatus.CONFLICT, ans.statusCode)
         verify(childrenGraph).addRelation(
             poorChild.id,
             pureChild.id

@@ -29,7 +29,7 @@ class ChildrenGraphHandler(private val childrenGraph: ChildrenGraph) {
         return if (isDeleted) {
             ResponseEntity.status(HttpStatus.OK).build()
         } else {
-            ResponseEntity.status(HttpStatus.NOT_FOUND).build()
+            ResponseEntity.notFound().build()
         }
     }
 
@@ -38,7 +38,7 @@ class ChildrenGraphHandler(private val childrenGraph: ChildrenGraph) {
         return if (isCreated) {
             ResponseEntity.status(HttpStatus.CREATED).build()
         } else {
-            ResponseEntity.status(HttpStatus.NOT_FOUND).build()
+            ResponseEntity.status(HttpStatus.CONFLICT).build()
         }
     }
 
