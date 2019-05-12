@@ -1,0 +1,1 @@
+This is simple REST service that represented graph with some operations 
