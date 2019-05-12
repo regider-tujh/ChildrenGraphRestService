@@ -1,10 +1,10 @@
 package egor.timoshenko.graph
 
-import egor.timoshenko.dto.ChildTmp
+import egor.timoshenko.dto.ChildV
 import java.util.*
 
 interface ChildrenGraph {
-    fun addChild(child: ChildTmp): Boolean
+    fun addChild(child: ChildV): Boolean
 
     fun deleteChild(childId: UUID): Boolean
 
@@ -12,10 +12,10 @@ interface ChildrenGraph {
 
     fun deleteRelation(childFromId: UUID, childToId: UUID): Boolean
 
-    fun getUnlovedChildren(): List<ChildTmp>
+    fun getUnlovedChildren(): List<ChildV>
 
-    fun getSadChildren(): List<ChildTmp>
+    fun getSadChildren(): List<ChildV>
 
-    fun getLovedChildren(): List<ChildTmp>
+    fun getLovedChildren(): List<ChildV>
 
 }

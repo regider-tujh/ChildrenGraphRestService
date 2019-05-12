@@ -4,7 +4,7 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import egor.timoshenko.dto.ChildTmp
+import egor.timoshenko.dto.ChildV
 import egor.timoshenko.dto.CreateChild
 import egor.timoshenko.graph.ChildrenGraph
 import org.junit.Test
@@ -16,8 +16,8 @@ import kotlin.test.assertEquals
 internal class ChildrenGraphHandlerTest {
 
     private val childrenGraph = mock<ChildrenGraph>()
-    private val pureChild = ChildTmp(UUID.randomUUID(), "42")
-    private val poorChild = ChildTmp(UUID.randomUUID(), "24")
+    private val pureChild = ChildV(UUID.randomUUID(), "42")
+    private val poorChild = ChildV(UUID.randomUUID(), "24")
 
     @Test
     fun `should return created response`() {

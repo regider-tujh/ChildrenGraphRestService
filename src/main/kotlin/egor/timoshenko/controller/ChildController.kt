@@ -1,7 +1,7 @@
 package egor.timoshenko.controller
 
 import egor.timoshenko.controller.handler.ChildrenGraphHandler
-import egor.timoshenko.dto.ChildTmp
+import egor.timoshenko.dto.ChildV
 import egor.timoshenko.dto.CreateChild
 import egor.timoshenko.dto.CreateRelation
 import egor.timoshenko.graph.exception.ChildNotFoundException
@@ -18,7 +18,7 @@ import java.util.*
 class ChildController(private val childrenGraph: ChildrenGraphHandler) {
 
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_UTF8_VALUE])
-    fun addChild(@RequestBody createChild: CreateChild): ResponseEntity<ChildTmp> {
+    fun addChild(@RequestBody createChild: CreateChild): ResponseEntity<ChildV> {
         return childrenGraph.addChild(createChild)
     }
 
@@ -40,18 +40,18 @@ class ChildController(private val childrenGraph: ChildrenGraphHandler) {
     }
 
     @GetMapping("/unloved")
-    fun getUnlovedChildren(): ResponseEntity<List<ChildTmp>> {
+    fun getUnlovedChildren(): ResponseEntity<List<ChildV>> {
         return childrenGraph.getUnlovedChildren()
 
     }
 
     @GetMapping("/sad")
-    fun getSadChildren(): ResponseEntity<List<ChildTmp>> {
+    fun getSadChildren(): ResponseEntity<List<ChildV>> {
         return childrenGraph.getSadChildren()
     }
 
     @GetMapping("/loved")
-    fun getLovedChildren(): ResponseEntity<List<ChildTmp>> {
+    fun getLovedChildren(): ResponseEntity<List<ChildV>> {
         return childrenGraph.getLovedChildren()
     }
 

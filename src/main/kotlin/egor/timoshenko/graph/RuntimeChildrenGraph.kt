@@ -1,6 +1,6 @@
 package egor.timoshenko.graph
 
-import egor.timoshenko.dto.ChildTmp
+import egor.timoshenko.dto.ChildV
 import egor.timoshenko.graph.exception.ChildNotFoundException
 import egor.timoshenko.graph.exception.ChildSelfReflectionException
 import java.util.*
@@ -10,7 +10,7 @@ import kotlin.concurrent.write
 
 class RuntimeChildrenGraph : ChildrenGraph {
 
-    private class Node(val value: ChildTmp) {
+    private class Node(val value: ChildV) {
         private val relations = HashMap<UUID, Node>()
         private val backRefs = HashMap<UUID, Node>()
         var relationOutCounter = 0
@@ -79,7 +79,7 @@ class RuntimeChildrenGraph : ChildrenGraph {
     private val children: MutableMap<UUID, Node> = HashMap()
     private val nameSet: MutableSet<String> = HashSet()
 
-    override fun addChild(child: ChildTmp): Boolean = lock.write {
+    override fun addChild(child: ChildV): Boolean = lock.write {
         return if (nameSet.contains(child.name) || children.containsKey(child.id)) {
             false
         } else {
@@ -131,15 +131,15 @@ class RuntimeChildrenGraph : ChildrenGraph {
 
     }
 
-    override fun getUnlovedChildren(): List<ChildTmp> = lock.read {
+    override fun getUnlovedChildren(): List<ChildV> = lock.read {
         children.values.filter { it.isUnloved() }.map { it.value }
     }
 
-    override fun getSadChildren(): List<ChildTmp> = lock.read {
+    override fun getSadChildren(): List<ChildV> = lock.read {
         children.values.filter { it.isSad() }.map { it.value }
     }
 
-    override fun getLovedChildren(): List<ChildTmp> = lock.read {
+    override fun getLovedChildren(): List<ChildV> = lock.read {
         val max = children.values.map { it.relationInCounter }.max()
         return if (max == null) {
             emptyList()

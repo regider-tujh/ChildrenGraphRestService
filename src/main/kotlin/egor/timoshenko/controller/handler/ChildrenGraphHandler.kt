@@ -1,6 +1,6 @@
 package egor.timoshenko.controller.handler
 
-import egor.timoshenko.dto.ChildTmp
+import egor.timoshenko.dto.ChildV
 import egor.timoshenko.dto.CreateChild
 import egor.timoshenko.graph.ChildrenGraph
 import org.springframework.http.HttpStatus
@@ -11,8 +11,8 @@ import java.util.*
 @Component
 class ChildrenGraphHandler(private val childrenGraph: ChildrenGraph) {
 
-    fun addChild(createChild: CreateChild): ResponseEntity<ChildTmp> {
-        val child = ChildTmp(
+    fun addChild(createChild: CreateChild): ResponseEntity<ChildV> {
+        val child = ChildV(
             id = UUID.randomUUID(),
             name = createChild.name
         )
@@ -51,17 +51,17 @@ class ChildrenGraphHandler(private val childrenGraph: ChildrenGraph) {
         }
     }
 
-    fun getUnlovedChildren(): ResponseEntity<List<ChildTmp>> {
+    fun getUnlovedChildren(): ResponseEntity<List<ChildV>> {
         val unlovedChildren = childrenGraph.getUnlovedChildren()
         return ResponseEntity.ok(unlovedChildren)
     }
 
-    fun getSadChildren(): ResponseEntity<List<ChildTmp>> {
+    fun getSadChildren(): ResponseEntity<List<ChildV>> {
         val sadChildren = childrenGraph.getSadChildren()
         return ResponseEntity.ok(sadChildren)
     }
 
-    fun getLovedChildren(): ResponseEntity<List<ChildTmp>> {
+    fun getLovedChildren(): ResponseEntity<List<ChildV>> {
         val lovedChildren = childrenGraph.getLovedChildren()
         return ResponseEntity.ok(lovedChildren)
     }

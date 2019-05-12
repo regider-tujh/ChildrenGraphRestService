@@ -1,6 +1,6 @@
 package egor.timoshenko.graph
 
-import egor.timoshenko.dto.ChildTmp
+import egor.timoshenko.dto.ChildV
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -11,7 +11,7 @@ internal class RuntimeChildrenGraphTest {
     @Test
     fun `should delete child`() {
         val childrenGraph: ChildrenGraph = RuntimeChildrenGraph()
-        val child = ChildTmp(UUID.randomUUID(), "name")
+        val child = ChildV(UUID.randomUUID(), "name")
         childrenGraph.addChild(child)
         assertTrue(childrenGraph.deleteChild(child.id))
     }
@@ -19,7 +19,7 @@ internal class RuntimeChildrenGraphTest {
     @Test
     fun `shouldn't add duplicate`() {
         val childrenGraph: ChildrenGraph = RuntimeChildrenGraph()
-        val child = ChildTmp(UUID.randomUUID(), "name")
+        val child = ChildV(UUID.randomUUID(), "name")
         childrenGraph.addChild(child)
         assertFalse(childrenGraph.addChild(child))
     }
@@ -27,8 +27,8 @@ internal class RuntimeChildrenGraphTest {
     @Test
     fun `shouldn't add children with same name`() {
         val childrenGraph: ChildrenGraph = RuntimeChildrenGraph()
-        val child1 = ChildTmp(UUID.randomUUID(), "name")
-        val child2 = ChildTmp(UUID.randomUUID(), "name")
+        val child1 = ChildV(UUID.randomUUID(), "name")
+        val child2 = ChildV(UUID.randomUUID(), "name")
         childrenGraph.addChild(child1)
         assertFalse(childrenGraph.addChild(child2))
     }
@@ -36,8 +36,8 @@ internal class RuntimeChildrenGraphTest {
     @Test
     fun `should return unloved children`() {
         val childrenGraph: ChildrenGraph = RuntimeChildrenGraph()
-        val child1 = ChildTmp(UUID.randomUUID(), "name1")
-        val child2 = ChildTmp(UUID.randomUUID(), "name2")
+        val child1 = ChildV(UUID.randomUUID(), "name1")
+        val child2 = ChildV(UUID.randomUUID(), "name2")
         childrenGraph.addChild(child1)
         childrenGraph.addChild(child2)
         val testList = listOf(child1, child2)
@@ -48,8 +48,8 @@ internal class RuntimeChildrenGraphTest {
     @Test
     fun `should return sad children`() {
         val childrenGraph: ChildrenGraph = RuntimeChildrenGraph()
-        val child1 = ChildTmp(UUID.randomUUID(), "name1")
-        val child2 = ChildTmp(UUID.randomUUID(), "name2")
+        val child1 = ChildV(UUID.randomUUID(), "name1")
+        val child2 = ChildV(UUID.randomUUID(), "name2")
         childrenGraph.addChild(child1)
         childrenGraph.addChild(child2)
         childrenGraph.addRelation(child1.id, child2.id)
@@ -61,8 +61,8 @@ internal class RuntimeChildrenGraphTest {
     @Test
     fun `should return loved children`() {
         val childrenGraph: ChildrenGraph = RuntimeChildrenGraph()
-        val child1 = ChildTmp(UUID.randomUUID(), "name1")
-        val child2 = ChildTmp(UUID.randomUUID(), "name2")
+        val child1 = ChildV(UUID.randomUUID(), "name1")
+        val child2 = ChildV(UUID.randomUUID(), "name2")
         childrenGraph.addChild(child1)
         childrenGraph.addChild(child2)
         childrenGraph.addRelation(child1.id, child2.id)
@@ -74,10 +74,10 @@ internal class RuntimeChildrenGraphTest {
     @Test
     fun `should return the most loved one`() {
         val childrenGraph: ChildrenGraph = RuntimeChildrenGraph()
-        val child1 = ChildTmp(UUID.randomUUID(), "name1")
-        val child2 = ChildTmp(UUID.randomUUID(), "name2")
-        val child3 = ChildTmp(UUID.randomUUID(), "name3")
-        val child4 = ChildTmp(UUID.randomUUID(), "name4")
+        val child1 = ChildV(UUID.randomUUID(), "name1")
+        val child2 = ChildV(UUID.randomUUID(), "name2")
+        val child3 = ChildV(UUID.randomUUID(), "name3")
+        val child4 = ChildV(UUID.randomUUID(), "name4")
 
         childrenGraph.addChild(child1)
         childrenGraph.addChild(child2)
@@ -102,10 +102,10 @@ internal class RuntimeChildrenGraphTest {
     @Test
     fun `should return sad in complicated situation`() {
         val childrenGraph: ChildrenGraph = RuntimeChildrenGraph()
-        val child1 = ChildTmp(UUID.randomUUID(), "name1")
-        val child2 = ChildTmp(UUID.randomUUID(), "name2")
-        val child3 = ChildTmp(UUID.randomUUID(), "name3")
-        val child4 = ChildTmp(UUID.randomUUID(), "name4")
+        val child1 = ChildV(UUID.randomUUID(), "name1")
+        val child2 = ChildV(UUID.randomUUID(), "name2")
+        val child3 = ChildV(UUID.randomUUID(), "name3")
+        val child4 = ChildV(UUID.randomUUID(), "name4")
 
         childrenGraph.addChild(child1)
         childrenGraph.addChild(child2)
